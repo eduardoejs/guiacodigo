@@ -14,10 +14,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserRepositoryInterface $model)
+    public function index(UserRepositoryInterface $model, Request $request)
     {
-        $users = $model->paginate(2); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
-        return view('admin.users.index', compact('users'));
+        $search = "";
+        if(isset($request->search)){
+            $search = $request->search;
+            $list = $model->findWhereLike(['name', 'email'], $search, 'id', 'DESC');
+        }else{
+            $list = $model->paginate(10,'id', 'DESC'); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
+        }
+
+        return view('admin.users.index', compact('list', 'search'));
     }
 
     /**

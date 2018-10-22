@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface UserRepositoryInterface
 {
-    public function all():Collection;
-    public function paginate(int $paginate = 10):LengthAwarePaginator;
+    public function all(string $column = 'id', string $order = 'ASC'):Collection;
+    public function paginate(int $paginate = 10, string $column = 'id', string $order = 'ASC'):LengthAwarePaginator;
+    public function findWhereLike(array $columns, string $search, string $column = 'id', string $order = 'ASC'):Collection;
 }
