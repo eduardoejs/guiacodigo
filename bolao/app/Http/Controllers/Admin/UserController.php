@@ -16,8 +16,6 @@ class UserController extends Controller
      */
     public function index(UserRepositoryInterface $model, Request $request)
     {
-        $lang = session('lang', 'pt-BR');
-        \App::setLocale($lang);
 
         $search = "";
         if(isset($request->search)){

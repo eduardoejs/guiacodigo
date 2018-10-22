@@ -12,12 +12,12 @@
 */
 
 Route::get('lang', function () {
-    $lang = session('lang', 'pt-BR');
+    $lang = session('lang', 'pt-br');
 
-    if($lang == 'pt-BR') {
+    if($lang == 'pt-br') {
         $lang = 'en';
     } else {
-        $lang = 'pt-BR';
+        $lang = 'pt-br';
     }
 
     session(['lang' => $lang]);
@@ -25,9 +25,6 @@ Route::get('lang', function () {
 })->name('set-language');
 
 Route::get('/', function () {
-    $lang = session('lang', 'pt-BR');
-    App::setLocale($lang);
-
     return view('welcome');
 });
 
