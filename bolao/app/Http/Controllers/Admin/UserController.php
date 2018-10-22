@@ -9,25 +9,42 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
 {
+
+    private $route = 'users';
+    private $page;
+    private $paginate = 10;
+    private $search = ['name', 'email'];
+    private $model;
+
+
+    public function __construct(UserRepositoryInterface $model)
+    {
+        $this->page = trans('bolao.user_list'); //Helper para Traduzir
+        $this->model = $model;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserRepositoryInterface $model, Request $request)
+    public function index(Request $request)
     {
+
+        $columnList = ['id' => '#', 'name' => trans('bolao.name'), 'email' => trans('bolao.email-address')];
 
         $search = "";
         if(isset($request->search)){
             $search = $request->search;
-            $list = $model->findWhereLike(['name', 'email'], $search, 'id', 'DESC');
+            $list = $this->model->findWhereLike($this->search, $search, 'id', 'DESC');
         }else{
-            $list = $model->paginate(10,'id', 'DESC'); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
+            $list = $this->model->paginate($this->paginate,'id', 'DESC'); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
         }
 
-        $page = trans('bolao.user_list');
+        $page = $this->page;
+        $routeName = $this->route;
 
-        return view('admin.users.index', compact('list', 'search', 'page'));
+        return view('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList'));
     }
 
     /**

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">@lang('bolao.dashboard')</div>
+                <div class="card-header">@lang('bolao.list', ['page' => $page])</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -22,7 +22,7 @@
                     </nav>
 
                     @if (count($list) > 0)
-                        <form class="form-inline" method="GET" action="{{ route('users.index') }}">
+                        <form class="form-inline" method="GET" action="{{ route($routeName.'.index') }}">
                             <div class="form-group mb-2">
                             <a href="#">@lang('bolao.add')</a>
                             </div>
@@ -30,24 +30,28 @@
                                 <input type="search" class="form-control" placeholder="@lang('bolao.search-message')" name="search" value="{{ $search }}">
                             </div>
                             <button type="submit" class="btn btn-primary mb-2">@lang('bolao.search')</button>
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary mb-2 ml-1">@lang('bolao.clean')</a>
+                            <a href="{{ route($routeName.'.index') }}" class="btn btn-secondary mb-2 ml-1">@lang('bolao.clean')</a>
                         </form>
 
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">@lang('bolao.name')</th>
-                                        <th scope="col">@lang('bolao.email-address')</th>
+                                        @foreach ($columnList as $key => $value)
+                                            <th scope="col">{{ $value }}</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($list as $key => $value)
                                         <tr>
-                                            <td scope='row'>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->email }}</td>
+                                            @foreach ($columnList as $columnName => $columnValue)
+                                                @if ($columnName == 'id')
+                                                    <th scope='row'>@php echo $value->{$columnName} @endphp</th>
+                                                @else
+                                                    <td>@php echo $value->{$columnName} @endphp</td>
+                                                @endif
+                                            @endforeach
                                         </tr>
                                     @endforeach
                                 </tbody>
