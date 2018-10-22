@@ -8,18 +8,12 @@
                 <div class="card-header">@lang('bolao.list', ['page' => $page])</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('bolao.home')</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@lang('bolao.list', ['page' => $page])</li>
-                        </ol>
-                    </nav>
+                    @alert_component(['msg' => session('msg'), 'status' => session('status')])
+                    @endalert_component
+
+                    @breadcrumb_component(['page' => $page, 'items' => $breadcrumb ?? []])
+                    @endbreadcrumb_component
 
                     @if (count($list) > 0)
                         <form class="form-inline" method="GET" action="{{ route($routeName.'.index') }}">

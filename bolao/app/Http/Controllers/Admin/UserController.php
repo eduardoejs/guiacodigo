@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function __construct(UserRepositoryInterface $model)
     {
-        $this->page = trans('bolao.user_list'); //Helper para Traduzir
+        //$this->page = trans('bolao.user_list'); //Helper para Traduzir
         $this->model = $model;
     }
 
@@ -30,6 +30,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->page = trans('bolao.user_list'); //Helper para Traduzir
 
         $columnList = ['id' => '#', 'name' => trans('bolao.name'), 'email' => trans('bolao.email-address')];
 
@@ -44,7 +45,15 @@ class UserController extends Controller
         $page = $this->page;
         $routeName = $this->route;
 
-        return view('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList'));
+        //$request->session()->flash('msg', 'Task was successful!');
+        //$request->session()->flash('status', 'notification');
+
+        $breadcrumb = [
+            (object)['url' => route('home'), 'title' => trans('bolao.home')],
+            (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
+        ];
+
+        return view('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList', 'breadcrumb'));
     }
 
     /**
