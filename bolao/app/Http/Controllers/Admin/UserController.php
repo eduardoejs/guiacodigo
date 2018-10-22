@@ -16,6 +16,9 @@ class UserController extends Controller
      */
     public function index(UserRepositoryInterface $model, Request $request)
     {
+        $lang = session('lang', 'pt-BR');
+        \App::setLocale($lang);
+
         $search = "";
         if(isset($request->search)){
             $search = $request->search;
@@ -24,7 +27,9 @@ class UserController extends Controller
             $list = $model->paginate(10,'id', 'DESC'); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
         }
 
-        return view('admin.users.index', compact('list', 'search'));
+        $page = trans('bolao.user_list');
+
+        return view('admin.users.index', compact('list', 'search', 'page'));
     }
 
     /**

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">@lang('bolao.dashboard')</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,21 +16,21 @@
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Lista de Usuários</li>
+                          <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('bolao.home')</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@lang('bolao.list', ['page' => $page])</li>
                         </ol>
                     </nav>
 
                     @if (count($list) > 0)
                         <form class="form-inline" method="GET" action="{{ route('users.index') }}">
                             <div class="form-group mb-2">
-                            <a href="#">Adicionar</a>
+                            <a href="#">@lang('bolao.add')</a>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <input type="search" class="form-control" placeholder="Buscar registro" name="search" value="{{ $search }}">
+                                <input type="search" class="form-control" placeholder="@lang('bolao.search-message')" name="search" value="{{ $search }}">
                             </div>
-                            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary mb-2 ml-1">Limpar</a>
+                            <button type="submit" class="btn btn-primary mb-2">@lang('bolao.search')</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-secondary mb-2 ml-1">@lang('bolao.clean')</a>
                         </form>
 
                         <div class="table-responsive">
@@ -38,8 +38,8 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">@lang('bolao.name')</th>
+                                        <th scope="col">@lang('bolao.email-address')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
