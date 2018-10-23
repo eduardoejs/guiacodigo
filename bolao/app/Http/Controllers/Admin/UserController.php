@@ -9,17 +9,13 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
 {
-
     private $route = 'users';
-    private $page;
-    private $paginate = 10;
+    private $paginate = 25;
     private $search = ['name', 'email'];
     private $model;
 
-
     public function __construct(UserRepositoryInterface $model)
     {
-        //$this->page = trans('bolao.user_list'); //Helper para Traduzir
         $this->model = $model;
     }
 
@@ -30,8 +26,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $this->page = trans('bolao.user_list'); //Helper para Traduzir
-
+        $page = trans('bolao.user_list'); //Helper para Traduzir
         $columnList = ['id' => '#', 'name' => trans('bolao.name'), 'email' => trans('bolao.email-address')];
 
         $search = "";
@@ -42,7 +37,6 @@ class UserController extends Controller
             $list = $this->model->paginate($this->paginate,'id', 'DESC'); //por padrao será de 10 itens mas posso passar aqui mais ou menos valores
         }
 
-        $page = $this->page;
         $routeName = $this->route;
 
         //$request->session()->flash('msg', 'Task was successful!');
