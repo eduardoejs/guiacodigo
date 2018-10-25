@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Validator;
 
 class UserController extends Controller
 {
@@ -57,7 +58,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $routeName = $this->route;
+
+        $page = trans('bolao.user_list');
+        $page_create = trans('bolao.user');
+
+        $breadcrumb = [
+            (object)['url' => route('home'), 'title' => trans('bolao.home')],
+            (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
+            (object)['url' => '', 'title' => trans('bolao.create_crud', ['page' => $page_create])],
+        ];
+        return view('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -68,7 +79,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ])->validate();
+
+        if($this->model->create($data)){
+            session()->flash('msg', 'Registro adicionado com sucesso!');
+            session()->flash('status', 'success');
+        }else{
+            session()->flash('msg', 'Não foi possível adicionar o registro!');
+            session()->flash('status', 'error');
+        }
+        return redirect()->back();
     }
 
     /**
