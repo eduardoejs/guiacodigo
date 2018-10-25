@@ -12,5 +12,6 @@ interface UserRepositoryInterface
     public function findWhereLike(array $columns, string $search, string $column = 'id', string $order = 'ASC'):Collection;
     public function create(array $data):Bool;
     public function update(array $data, int $id):Bool;
+    public function delete(int $id):Bool;
     public function find(int $id);
 }

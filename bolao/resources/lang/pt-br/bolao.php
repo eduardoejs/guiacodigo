@@ -15,6 +15,7 @@ return [
     'lang' => 'EN',
     'add' => 'Adicionar',
     'edit' => 'Alterar',
+    'delete' => 'Excluir',
     'search' => 'Buscar',
     'search-message' => 'Buscar registro',
     'clean' => 'Limpar',
@@ -25,10 +26,14 @@ return [
     'user' => 'usuário',
     'create_crud' => 'Adicionar :page',
     'edit_crud' => 'Alterar :page',
+    'show_crud' => 'Detalhes do :page',
     'add_record_success' => 'Registro adicionado com sucesso!',
     'add_record_error' => 'Erro ao adicionar o registro!',
     'edit_record_success' => 'Registro alterado com sucesso!',
     'edit_record_error' => 'Erro ao editar o registro!',
+    'delete_record' => 'Excluir esse registro?',
+    'record_deleted_success' => 'Registro excluído com sucesso!',
+    'record_deleted_error' => 'Erro ao excluir registro!',
     'action' => 'Ação',
 
 ];
