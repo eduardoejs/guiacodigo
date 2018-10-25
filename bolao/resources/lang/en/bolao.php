@@ -14,6 +14,7 @@ return [
     'reset-password-link' => 'Send Password Reset Link',
     'lang' => 'BR',
     'add' => 'Add',
+    'edit' => 'Edit',
     'search' => 'Search',
     'search-message' => 'Find register',
     'clean' => 'Clean',
@@ -23,4 +24,10 @@ return [
     'user_list' => 'User',
     'user' => 'user',
     'create_crud' => 'Add :page',
+    'edit_crud' => 'Edit :page',
+    'add_record_success' => 'Record added successfully!',
+    'add_record_error' => 'Error adding registry!',
+    'edit_record_success' => 'Record edited successfully!',
+    'edit_record_error' => 'Error editing registry!',
+    'action' => 'Action',
 ];

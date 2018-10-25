@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -88,10 +89,10 @@ class UserController extends Controller
         ])->validate();
 
         if($this->model->create($data)){
-            session()->flash('msg', 'Registro adicionado com sucesso!');
+            session()->flash('msg', trans('bolao.add_record_success'));
             session()->flash('status', 'success');
         }else{
-            session()->flash('msg', 'Não foi possível adicionar o registro!');
+            session()->flash('msg', trans('bolao.add_record_error'));
             session()->flash('status', 'error');
         }
         return redirect()->back();
@@ -105,7 +106,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -116,7 +117,25 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $routeName = $this->route;
+        $register = $this->model->find($id);
+
+        if($register){
+            $page = trans('bolao.user_list');
+            $page_edit = trans('bolao.user');
+
+            $breadcrumb = [
+                (object)['url' => route('home'), 'title' => trans('bolao.home')],
+                (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
+                (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
+            ];
+
+            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+        }
+
+        session()->flash('msg', 'Registro não encontrado!');
+        session()->flash('status', 'alert');
+        return redirect()->route($routeName.'.index');
     }
 
     /**
@@ -128,7 +147,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        if(!$data['password']){
+            unset($data['password']);
+        }
+
+        Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+            'password' => 'sometimes|required|string|min:6|confirmed',
+        ])->validate();
+
+        if($this->model->update($data, $id)){
+            session()->flash('msg', trans('bolao.edit_record_success'));
+            session()->flash('status', 'success');
+        }else{
+            session()->flash('msg', trans('bolao.edit_record_error'));
+            session()->flash('status', 'error');
+        }
+
+        return redirect()->back();
     }
 
     /**

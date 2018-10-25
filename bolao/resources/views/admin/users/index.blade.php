@@ -12,7 +12,7 @@
         @busca_component(['routeName' => $routeName, 'search' => $search])
         @endbusca_component
 
-        @table_component(['columnList' => $columnList, 'list' => $list])
+        @table_component(['columnList' => $columnList, 'list' => $list, 'routeName' => $routeName])
         @endtable_component
 
         @paginate_component(['search' => $search, 'list' => $list])
