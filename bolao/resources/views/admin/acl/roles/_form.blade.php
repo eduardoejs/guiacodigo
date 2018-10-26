@@ -18,4 +18,14 @@
             </span>
         @endif
     </div>
+
+    <div class="form-group col-6">
+        <label for="permissions">{{ __('bolao.permission_list') }}</label>
+        <select multiple name="permissions[]" id="" class="form-control">
+            @foreach ($permissions as $key => $value)
+                <option value="{{$value->id}}">Permite {{$value->description}}</option>
+            @endforeach
+        </select>
+    </div>
+
 </div>

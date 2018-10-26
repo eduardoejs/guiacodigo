@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UserRepositoryInterface;
 use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\Repositories\Eloquent\UserRepository;
 
 class UserController extends Controller
 {
@@ -15,7 +15,7 @@ class UserController extends Controller
     private $search = ['name', 'email'];
     private $model;
 
-    public function __construct(UserRepositoryInterface $model)
+    public function __construct(UserRepository $model)
     {
         $this->model = $model;
     }

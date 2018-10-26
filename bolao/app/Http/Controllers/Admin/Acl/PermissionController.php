@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Acl;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\PermissionRepositoryInterface;
-use Validator;
+use App\Repositories\Eloquent\PermissionRepository;
 
 class PermissionController extends Controller
 {
@@ -14,7 +14,7 @@ class PermissionController extends Controller
     private $search = ['name', 'description'];
     private $model;
 
-    public function __construct(PermissionRepositoryInterface $model)
+    public function __construct(PermissionRepository $model)
     {
         $this->model = $model;
     }

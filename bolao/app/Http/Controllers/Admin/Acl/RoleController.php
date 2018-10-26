@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Acl;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\RoleRepositoryInterface;
-use Validator;
+use App\Repositories\Eloquent\RoleRepository;
+Use \App\Repositories\Eloquent\PermissionRepository;
 
 class RoleController extends Controller
 {
@@ -13,10 +14,12 @@ class RoleController extends Controller
     private $paginate = 25;
     private $search = ['name', 'description'];
     private $model;
+    private $modelPermission;
 
-    public function __construct(RoleRepositoryInterface $model)
+    public function __construct(RoleRepository $model, PermissionRepository $modelPermission)
     {
         $this->model = $model;
+        $this->modelPermission = $modelPermission;
     }
 
     /**
@@ -58,12 +61,14 @@ class RoleController extends Controller
         $page = trans('bolao.role_list');
         $page_create = trans('bolao.role');
 
+        $permissions = $this->modelPermission->all('description', 'ASC');
+
         $breadcrumb = [
             (object)['url' => route('home'), 'title' => trans('bolao.home')],
             (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
             (object)['url' => '', 'title' => trans('bolao.create_crud', ['page' => $page_create])],
         ];
-        return view('admin.acl.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return view('admin.acl.'.$routeName.'.create', compact('page', 'permissions', 'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -142,13 +147,15 @@ class RoleController extends Controller
             $page = trans('bolao.role_list');
             $page_edit = trans('bolao.role');
 
+            $permissions = $this->modelPermission->all('name', 'ASC');
+
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
                 (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
                 (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
             ];
 
-            return view('admin.acl.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+            return view('admin.acl.'.$routeName.'.edit', compact('register', 'permissions', 'page', 'page_edit', 'routeName', 'breadcrumb'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
