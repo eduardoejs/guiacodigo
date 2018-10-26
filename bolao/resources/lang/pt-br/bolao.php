@@ -24,9 +24,14 @@ return [
     'list' => 'Lista de :page',
     'user_list' => 'Usuários',
     'user' => 'usuário',
+    'create_or_edit' => 'Criar ou alterar',
+    'permission_list' => 'Permissões',
+    'permission' => 'permissão',
+    'role_list' => 'Funções',
+    'role' => 'função',
     'create_crud' => 'Adicionar :page',
     'edit_crud' => 'Alterar :page',
-    'show_crud' => 'Detalhes do :page',
+    'show_crud' => 'Detalhes de :page',
     'add_record_success' => 'Registro adicionado com sucesso!',
     'add_record_error' => 'Erro ao adicionar o registro!',
     'edit_record_success' => 'Registro alterado com sucesso!',
@@ -35,5 +40,7 @@ return [
     'record_deleted_success' => 'Registro excluído com sucesso!',
     'record_deleted_error' => 'Erro ao excluir registro!',
     'action' => 'Ação',
+    'description' => 'Descrição',
+    'acl' => 'Lista de Controle de Acesso',
 
 ];

@@ -10,7 +10,7 @@
         @endbreadcrumb_component
 
         @form_component(['action' => route($routeName.'.store'), 'method' => 'POST'])
-            @include('admin.'.$routeName.'._form')
+            @include('admin.acl.'.$routeName.'._form')
             <button type="submit" class="btn btn-primary btn-lg float-right">@lang('bolao.add')</button>
         @endform_component
 

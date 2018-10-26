@@ -14,6 +14,7 @@
                         </div>
                     @endif
 
+                    Welcome
                 </div>
             </div>
         </div>

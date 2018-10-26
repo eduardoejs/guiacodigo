@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Acl;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 use Validator;
-use Illuminate\Validation\Rule;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-    private $route = 'users';
+    private $route = 'roles';
     private $paginate = 25;
-    private $search = ['name', 'email'];
+    private $search = ['name', 'description'];
     private $model;
 
-    public function __construct(UserRepositoryInterface $model)
+    public function __construct(RoleRepositoryInterface $model)
     {
         $this->model = $model;
     }
@@ -28,8 +27,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $routeName = $this->route;
-        $page = trans('bolao.user_list'); //Helper para Traduzir
-        $columnList = ['id' => '#', 'name' => trans('bolao.name'), 'email' => trans('bolao.email-address')];
+        $page = trans('bolao.role_list'); //Helper para Traduzir
+        $columnList = ['id' => '#', 'name' => trans('bolao.name'), 'description' => trans('bolao.description')];
 
         $search = "";
         if(isset($request->search)){
@@ -44,7 +43,7 @@ class UserController extends Controller
             (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
         ];
 
-        return view('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList', 'breadcrumb'));
+        return view('admin.acl.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList', 'breadcrumb'));
     }
 
     /**
@@ -56,15 +55,15 @@ class UserController extends Controller
     {
         $routeName = $this->route;
 
-        $page = trans('bolao.user_list');
-        $page_create = trans('bolao.user');
+        $page = trans('bolao.role_list');
+        $page_create = trans('bolao.role');
 
         $breadcrumb = [
             (object)['url' => route('home'), 'title' => trans('bolao.home')],
             (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
             (object)['url' => '', 'title' => trans('bolao.create_crud', ['page' => $page_create])],
         ];
-        return view('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return view('admin.acl.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -79,8 +78,7 @@ class UserController extends Controller
 
         Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'description' => 'required|string|max:255',
         ])->validate();
 
         if($this->model->create($data)){
@@ -105,8 +103,8 @@ class UserController extends Controller
         $register = $this->model->find($id);
 
         if($register){
-            $page = trans('bolao.user_list');
-            $page_edit = trans('bolao.user');
+            $page = trans('bolao.role_list');
+            $page_edit = trans('bolao.role');
 
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
@@ -121,7 +119,7 @@ class UserController extends Controller
                 $delete = true;
             }
 
-            return view('admin.'.$routeName.'.show', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb', 'delete'));
+            return view('admin.acl.'.$routeName.'.show', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb', 'delete'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
@@ -141,8 +139,8 @@ class UserController extends Controller
         $register = $this->model->find($id);
 
         if($register){
-            $page = trans('bolao.user_list');
-            $page_edit = trans('bolao.user');
+            $page = trans('bolao.role_list');
+            $page_edit = trans('bolao.role');
 
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
@@ -150,7 +148,7 @@ class UserController extends Controller
                 (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
             ];
 
-            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+            return view('admin.acl.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
@@ -169,14 +167,9 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        if(!$data['password']){
-            unset($data['password']);
-        }
-
         Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-            'password' => 'sometimes|required|string|min:6|confirmed',
+            'description' => 'required|string|max:255',
         ])->validate();
 
         if($this->model->update($data, $id)){

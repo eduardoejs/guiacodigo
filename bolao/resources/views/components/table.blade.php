@@ -26,7 +26,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan={{count($columnList)}}><div class="alert alert-info text-center" role="alert"> Sem registros! </div></td>
+                    <td colspan={{count($columnList)+1}}><div class="alert alert-info text-center" role="alert"> Sem registros! </div></td>
                 </tr>
             @endforelse
         </tbody>
