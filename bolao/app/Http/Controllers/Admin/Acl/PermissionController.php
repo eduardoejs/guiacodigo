@@ -10,7 +10,7 @@ use App\Repositories\Eloquent\PermissionRepository;
 class PermissionController extends Controller
 {
     private $route = 'permissions';
-    private $paginate = 25;
+    private $paginate = 4;
     private $search = ['name', 'description'];
     private $model;
 

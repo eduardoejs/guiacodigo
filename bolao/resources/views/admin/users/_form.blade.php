@@ -33,4 +33,35 @@
         <label for="password">{{ __('bolao.confirm-password') }}</label>
         <input type="password" name="password_confirmation" value="" class="form-control">
     </div>
+
+    <div class="form-group col-6">
+        <label for="roles">{{ __('bolao.role_list') }}</label>
+        <select multiple name="roles[]" id="" class="form-control">
+            @foreach ($roles as $key => $value)
+                @php
+                    $select = '';
+
+                    // nao perde a selecao do select caso caia na validacao do campo do formulario
+                    if(old('roles') ?? false){
+                        foreach(old('roles') as $key => $id){
+                            if($value->id == $id) {
+                                $select = 'selected';
+                            }
+                        }
+                    }else{
+                        // logica para trazer as permissoes selecionadas que foram atribuidas no momento do create
+                        if($register ?? false){
+                            foreach($register->roles as $key => $role){
+                                if($role->id == $value->id) {
+                                    $select = 'selected';
+                                }
+                            }
+                        }
+                    }
+                @endphp
+
+                <option {{ $select }} value="{{$value->id}}">{{$value->description}}</option>
+            @endforeach
+        </select>
+    </div>
 </div>

@@ -23,7 +23,29 @@
         <label for="permissions">{{ __('bolao.permission_list') }}</label>
         <select multiple name="permissions[]" id="" class="form-control">
             @foreach ($permissions as $key => $value)
-                <option value="{{$value->id}}">Permite {{$value->description}}</option>
+                @php
+                    $select = '';
+
+                    // nao perde a selecao do select caso caia na validacao do campo do formulario
+                    if(old('permissions') ?? false){
+                        foreach(old('permissions') as $key => $id){
+                            if($value->id == $id) {
+                                $select = 'selected';
+                            }
+                        }
+                    }else{
+                        // logica para trazer as permissoes selecionadas que foram atribuidas no momento do create
+                        if($register ?? false){
+                            foreach($register->permissions as $key => $permission){
+                                if($permission->id == $value->id) {
+                                    $select = 'selected';
+                                }
+                            }
+                        }
+                    }
+                @endphp
+
+                <option {{ $select }} value="{{$value->id}}">Permite {{$value->description}}</option>
             @endforeach
         </select>
     </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\UserRepository;
+use \App\Repositories\Eloquent\RoleRepository;
 
 class UserController extends Controller
 {
@@ -14,10 +15,12 @@ class UserController extends Controller
     private $paginate = 25;
     private $search = ['name', 'email'];
     private $model;
+    private $modelRole;
 
-    public function __construct(UserRepository $model)
+    public function __construct(UserRepository $model, RoleRepository $modelRole)
     {
         $this->model = $model;
+        $this->modelRole = $modelRole;
     }
 
     /**
@@ -59,12 +62,14 @@ class UserController extends Controller
         $page = trans('bolao.user_list');
         $page_create = trans('bolao.user');
 
+        $roles = $this->modelRole->all('description', 'ASC');
+
         $breadcrumb = [
             (object)['url' => route('home'), 'title' => trans('bolao.home')],
             (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
             (object)['url' => '', 'title' => trans('bolao.create_crud', ['page' => $page_create])],
         ];
-        return view('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return view('admin.'.$routeName.'.create', compact('page', 'roles' ,'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -144,13 +149,15 @@ class UserController extends Controller
             $page = trans('bolao.user_list');
             $page_edit = trans('bolao.user');
 
+            $roles = $this->modelRole->all('description', 'ASC');
+
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
                 (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
                 (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
             ];
 
-            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+            return view('admin.'.$routeName.'.edit', compact('register','roles', 'page', 'page_edit', 'routeName', 'breadcrumb'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
