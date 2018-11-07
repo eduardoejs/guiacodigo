@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('list-bolao', function($user, $bolao_user_id){
+            return $user->id == $bolao_user_id;
+        });
     }
 }
