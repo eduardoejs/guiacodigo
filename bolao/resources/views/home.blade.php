@@ -14,12 +14,8 @@
                         </div>
                     @endif
 
-                    @php
-                        $id_dono_bolao = 1;
-                    @endphp
-
                     <div class="row">
-                        @can('list-bolao', $id_dono_bolao)
+                        @can('list-user')
                             <div onclick="window.location='{{ route('users.index') }}'" style="cursor:pointer" class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                                 <div class="card-header">@lang('bolao.list', ['page' => __('bolao.user_list')])</div>
                                 <div class="card-body">
