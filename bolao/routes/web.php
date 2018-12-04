@@ -35,6 +35,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function(){
     Route::resource('/users', 'UserController');
+    Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:list-user');
+    Route::post('/users', 'UserController@store')->name('users.store')->middleware('can:add-user');
+    Route::get('/users/create', 'UserController@create')->name('users.create')->middleware('can:add-user');
 
     //Namespace Admin\Acl
     Route::namespace('Acl')->group(function(){
