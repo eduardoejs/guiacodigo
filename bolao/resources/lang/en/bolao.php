@@ -3,6 +3,7 @@
 return [
 
     'login' => 'Login',
+    'logout' => 'Logout',
     'register' => 'Register',
     'password' => 'Password',
     'confirm-password' => 'Confirm Password',
@@ -12,7 +13,7 @@ return [
     'name' => 'Name',
     'reset-password' => 'Reset Password',
     'reset-password-link' => 'Send Password Reset Link',
-    'lang' => 'BR',
+    'lang' => 'PT-BR',
     'add' => 'Add',
     'edit' => 'Edit',
     'delete' => 'Destroy',
@@ -42,4 +43,10 @@ return [
     'action' => 'Action',
     'description' => 'Description',
     'acl' => 'Access Control List',
+    'welcome_to_the_betting_website' => 'Welcome to the biggest family betting portal',
+    'short_with_your_family' => 'SHORT WITH YOUR FAMILY',
+    'check_the_betting_list' => 'Check the betting list',
+    'betting_list' => 'Betting List',
+    'betting_logo' => 'Betting Craps',
+    'join_or_create' => 'Join or create your own!',
 ];

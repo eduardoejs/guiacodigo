@@ -3,6 +3,7 @@
 return [
 
     'login' => 'Entrar',
+    'logout' => 'Sair',
     'register' => 'Cadastro',
     'password' => 'Senha',
     'confirm-password' => 'Confirme a Senha',
@@ -42,5 +43,12 @@ return [
     'action' => 'Ação',
     'description' => 'Descrição',
     'acl' => 'Lista de Controle de Acesso',
+    'welcome_to_the_betting_website' => 'Bem vindo ao maior portal de apostas familiar',
+    'short_with_your_family' => 'CURTA COM SUA FAMÍLA',
+    'check_the_betting_list' => 'Confira a lista de apostas',
+
+    'betting_list' => 'Lista de Apostas',
+    'betting_logo' => 'Bolão de Apostas',
+    'join_or_create' => 'Participe ou crie a sua!',
 
 ];
