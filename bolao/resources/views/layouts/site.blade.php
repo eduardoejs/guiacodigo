@@ -48,7 +48,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('bolao.dashboard') }}</a>
+                        <a class="nav-link" href="{{ route('painel') }}">{{ __('bolao.dashboard') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link">{{ Auth::user()->name }}</a>
