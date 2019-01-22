@@ -69,4 +69,9 @@ abstract class AbstractRepository
     {
         return $this->model->find($id);
     }
+
+    public function findOrFail(int $id)
+    {
+        return $this->model->findOrFail($id);
+    }
 }

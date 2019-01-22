@@ -32,6 +32,14 @@ class RolesSeeder extends Seeder
         $userAdmin->roles()->attach($adminACL);
         $userManager->roles()->attach($managerACL);
 
+        //Relaciono Role com Permissions
+        $listUser = \App\Permission::where('name', 'list-user')->get();
+        $addUser = \App\Permission::where('name', 'add-user')->get();
+        $showUser = \App\Permission::where('name', 'show-user')->get();
+
+        $managerACL->permissions()->attach($listUser);
+        $managerACL->permissions()->attach($addUser);
+        $managerACL->permissions()->attach($showUser);
 
         echo "Registros de Roles criados com sucesso! \n";
     }
