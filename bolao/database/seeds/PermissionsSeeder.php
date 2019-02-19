@@ -37,6 +37,11 @@ class PermissionsSeeder extends Seeder
             ['description' => 'Visualizar dados do usuário']
         );
 
+        \App\Permission::firstOrCreate(
+            ['name' => 'acl'],
+            ['description' => 'Acesso ao ACL']
+        );
+
         echo "Registros de ACL criados com sucesso! \n";
     }
 }

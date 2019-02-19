@@ -42,7 +42,7 @@ Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function()
     Route::resource('/users', 'UserController');
 
     //Namespace Admin\Acl
-    Route::namespace('Acl')->group(function(){
+    Route::namespace('Acl')->middleware('can:acl')->group(function(){
         Route::resource('/permissions', 'PermissionController');
         Route::resource('/roles', 'RoleController');
     });

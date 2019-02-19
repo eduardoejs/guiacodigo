@@ -46,6 +46,11 @@ class User extends Authenticatable
         return (boolean) $this->roles()->find($role->id);
     }
 
+    public function bettings()
+    {
+        return $this->hasMany(Betting::class);
+    }
+
     public function isAdmin()
     {
         return $this->hasRole('administrador');
