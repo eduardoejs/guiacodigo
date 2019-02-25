@@ -51,4 +51,11 @@ return [
     'join_or_create' => 'Participe ou crie a sua!',
     '403' => 'O acesso a esta página é restrito. Por favor, verifique com o administrador do site se você acredita que isso é um erro',
     '404' => 'A página que você está procurando pode ter sido removida caso seu nome tenha mudado ou esteja temporariamente indisponível.',
+    'title' => 'Title',
+    'current_round' => 'Rodada atual',
+    'value_result' => 'Valor resultado',
+    'extra_value' => 'Valor extra',
+    'value_free' => 'Taxa',
+    'betting' => 'Apostas',
+
 ];

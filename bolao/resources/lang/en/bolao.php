@@ -51,4 +51,11 @@ return [
     'join_or_create' => 'Join or create your own!',
     '403' => 'Access to this page is restricted. Please check with the site admin if your believe this is a mistake.',
     '404' => 'The page you are looking for might have been removed had its name changed or is temporarily unavailable.',
+    'title' => 'Title',
+    'current_round' => 'Current Round',
+    'value_result' => 'Value Result',
+    'extra_value' => 'Extra Value',
+    'value_free' => 'Value Free',
+    'betting' => 'Bettings',
+
 ];
