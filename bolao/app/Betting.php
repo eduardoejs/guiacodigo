@@ -2,8 +2,9 @@
 
 namespace App;
 
+use App\User;
+use App\Round;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Betting extends Model
 {
@@ -12,6 +13,16 @@ class Betting extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function rounds()
+    {
+        return $this->hasMany(Round::class);
+    }
+
+    public function getUserNameAttribute()
+    {
+        return $this->user->name;
     }
 
 }

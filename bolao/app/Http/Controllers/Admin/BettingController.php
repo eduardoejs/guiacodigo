@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\BettingRepository;
 
-class BwttingController extends Controller
+class BettingController extends Controller
 {
     private $route = 'bettings';
     private $paginate = 10;
@@ -30,6 +30,7 @@ class BwttingController extends Controller
         $page = trans('bolao.betting_list'); //Helper para Traduzir
         $columnList = ['id' => '#',
                        'title' => trans('bolao.title'),
+                       'user_name' => trans('bolao.name'),
                        'current_round' => trans('bolao.current_round'),
                        'value_result' => trans('bolao.value_result'),
                        'extra_value' => trans('bolao.extra_value'),
@@ -49,7 +50,7 @@ class BwttingController extends Controller
             (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
         ];
 
-        return view('admin.acl.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList', 'breadcrumb'));
+        return view('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList', 'breadcrumb'));
     }
 
     /**
@@ -69,7 +70,7 @@ class BwttingController extends Controller
             (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
             (object)['url' => '', 'title' => trans('bolao.create_crud', ['page' => $page_create])],
         ];
-        return view('admin.acl.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return view('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -127,7 +128,7 @@ class BwttingController extends Controller
                 $delete = true;
             }
 
-            return view('admin.acl.'.$routeName.'.show', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb', 'delete'));
+            return view('admin.'.$routeName.'.show', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb', 'delete'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
@@ -156,7 +157,7 @@ class BwttingController extends Controller
                 (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
             ];
 
-            return view('admin.acl.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');

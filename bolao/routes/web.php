@@ -40,6 +40,7 @@ Route::middleware('auth')->namespace('Admin')->group(function () {
 
 Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function(){
     Route::resource('/users', 'UserController');
+    Route::resource('/bettings', 'BettingController');
 
     //Namespace Admin\Acl
     Route::namespace('Acl')->middleware('can:acl')->group(function(){
