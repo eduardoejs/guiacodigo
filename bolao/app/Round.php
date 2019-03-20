@@ -14,4 +14,10 @@ class Round extends Model
         return $this->belongsTo(Betting::class);
     }
 
+    //accessor laravel
+    public function getBettingTitleAttribute()
+    {
+        return $this->betting->title;
+    }
+
 }
