@@ -10,6 +10,20 @@
     </div>
 
     <div class="form-group col-6">
+        <label for="betting_id">{{ __('bolao.betting') }}</label>
+        <select name="betting_id" id="" class="form-control {{ $errors->has('betting_id') ? ' is-invalid' : '' }}">        
+            @foreach ($listRel as $key => $value)
+                <option value="{{$value->id}}">{{$value->title}}</option>
+            @endforeach
+        </select>
+        @if ($errors->has('betting_id'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('betting_id') }}</strong>
+            </span>
+        @endif    
+    </div>
+
+    <div class="form-group col-6">
         <label for="date_start">{{ __('bolao.date_start') }} ({{ date('d-m-Y H:i') }})</label>
         <input type="datetime" name="date_start" value="{{ old('date_start') ?? ($register->date_start ?? '') }}" class="form-control {{ $errors->has('date_start') ? ' is-invalid' : '' }}" placeholder="{{ date('d-m-Y H:i') }}">
         @if ($errors->has('date_start'))
@@ -27,5 +41,5 @@
                 <strong>{{ $errors->first('date_end') }}</strong>
             </span>
         @endif
-    </div>
+    </div>    
 </div>
