@@ -10,7 +10,7 @@
         @endbreadcrumb_component
 
         @form_component(['action' => route($routeName.'.update', $register->id), 'method' => 'PUT'])
-            @include('admin.acl.'.$routeName.'._form')
+            @include('admin.'.$routeName.'._form')
             <button type="submit" class="btn btn-primary btn-lg float-right">@lang('bolao.edit')</button>
         @endform_component
 

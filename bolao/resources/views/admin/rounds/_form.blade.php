@@ -13,7 +13,22 @@
         <label for="betting_id">{{ __('bolao.betting') }}</label>
         <select name="betting_id" id="" class="form-control {{ $errors->has('betting_id') ? ' is-invalid' : '' }}">        
             @foreach ($listRel as $key => $value)
-                <option value="{{$value->id}}">{{$value->title}}</option>
+                @php
+                    $select = '';
+
+                    if(old('betting_id') ?? false) {                        
+                        if(old('betting_id') == $value->id) {
+                            $select = 'selected';
+                        }                        
+                    }else {
+                        if($register_id ?? false) {
+                            if($register_id == $value->id) {
+                                $select = 'selected';
+                            }
+                        }
+                    }                    
+                @endphp
+                <option {{$select}} value="{{$value->id}}">{{$value->title}}</option>
             @endforeach
         </select>
         @if ($errors->has('betting_id'))

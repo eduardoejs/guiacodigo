@@ -20,13 +20,13 @@ class Round extends Model
         return $this->betting->title;
     }
 
-    public function getDateStartFriendlyAttribute()
+    public function getDateStartSiteAttribute()
     {
         $date = \date_create($this->date_start);
         return \date_format($date, 'd/m/Y H:i:s');
     }
 
-    public function getDateEndFriendlyAttribute()
+    public function getDateEndSiteAttribute()
     {
         $date = \date_create($this->date_end);
         return \date_format($date, 'd/m/Y H:i:s');

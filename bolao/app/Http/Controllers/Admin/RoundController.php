@@ -31,8 +31,8 @@ class RoundController extends Controller
         $columnList = ['id' => '#',
                        'title' => trans('bolao.title'),
                        'betting_title' => trans('bolao.betting_title'),
-                       'date_start_friendly' => trans('bolao.date_start'),
-                       'date_end_friendly' => trans('bolao.date_end')
+                       'date_start_site' => trans('bolao.date_start'),
+                       'date_end_site' => trans('bolao.date_end')
                     ];
 
         $search = "";
@@ -153,13 +153,17 @@ class RoundController extends Controller
             $page = trans('bolao.round_list');
             $page_edit = trans('bolao.round');
 
+            $user = auth()->user();
+            $listRel = $user->bettings;
+            $register_id = $register->betting_id;
+
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
                 (object)['url' => route($routeName.'.index'), 'title' => trans('bolao.list', ['page' => $page])],
                 (object)['url' => '', 'title' => trans('bolao.edit_crud', ['page' => $page_edit])],
             ];
 
-            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb'));
+            return view('admin.'.$routeName.'.edit', compact('register', 'page', 'page_edit', 'routeName', 'breadcrumb', 'listRel', 'register_id'));
         }
 
         session()->flash('msg', 'Registro não encontrado!');
