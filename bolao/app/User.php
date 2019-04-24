@@ -56,5 +56,17 @@ class User extends Authenticatable
         return $this->hasRole('administrador');
     }
 
+    //acessor
+    public function getRoundsAttribute()
+    {
+        $bettings = $this->bettings;
+        $rounds = [];
+        
+        foreach ($bettings as $key => $value) {
+            $rounds[] = $value->rounds;
+        }
+
+        return array_collapse($rounds); //array_collapse -> Sintaxe Laravel versao 5.6, a partir da versao 5.7 foi alterado
+    }
 
 }

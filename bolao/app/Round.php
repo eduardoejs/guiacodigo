@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Match;
 use App\Betting;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,9 +10,15 @@ class Round extends Model
 {
     protected $fillable = ['betting_id', 'title', 'date_start', 'date_end'];
 
+    //relacionamentos
     public function betting()
     {
         return $this->belongsTo(Betting::class);
+    }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
     }
 
     //accessor laravel
