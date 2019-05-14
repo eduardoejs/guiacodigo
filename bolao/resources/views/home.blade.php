@@ -85,6 +85,21 @@
                         <p class="text-muted">@lang('bolao.create_or_edit')</p>
                         </div>
                     </div>
+
+                    <div onclick="window.location='{{ route('matches.index') }}'" style="cursor:pointer" class="col-md-4 col-sm-6 portfolio-item">
+                        <a class="portfolio-link">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                            <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="{{ asset('img/portfolio/01-thumbnail.jpg') }}" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                        <h4>@lang('bolao.match_list', ['page' => __('bolao.match_list')])</h4>
+                        <p class="text-muted">@lang('bolao.create_or_edit')</p>
+                        </div>
+                    </div>
                 @endcan
             </div>
         </div>
