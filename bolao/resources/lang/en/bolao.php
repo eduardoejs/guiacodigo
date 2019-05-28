@@ -71,6 +71,6 @@ return [
     'date' => 'Date',
     'match_list' => 'Matches',
     'match' => 'Match',
-    'result_description' => '([A] - Team A, [B] - Team B, [E] - Draw)',
+    'result_description' => 'Result (A - Team A, B - Team B, E - Draw)',
 
 ];

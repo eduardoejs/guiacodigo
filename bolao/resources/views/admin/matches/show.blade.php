@@ -10,9 +10,13 @@
         @endbreadcrumb_component
 
         <p>@lang('bolao.title'): {{ $register->title }}</p>
-        <p>@lang('bolao.betting_title'): {{ $register->betting->title }}</p>
-        <p>@lang('bolao.date_start'): {{ $register->date_start_site }}</p>
-        <p>@lang('bolao.date_end'): {{ $register->date_end_site }}</p>
+        <p>@lang('bolao.stadium'): {{ $register->stadium }}</p>
+        <p>@lang('bolao.team_a'): {{ $register->team_a }}</p>
+        <p>@lang('bolao.team_b'): {{ $register->team_b }}</p>
+        <p>@lang('bolao.result'): {{ $register->result }}</p>
+        <p>@lang('bolao.scoreboard_a'): {{ $register->scoreboard_a }}</p>
+        <p>@lang('bolao.scoreboard_b'): {{ $register->scoreboard_b }}</p>
+        <p>@lang('bolao.date'): {{ $register->date_site }}</p>        
 
         @if ($delete)
             @form_component(['action' => route($routeName.'.destroy', $register->id), 'method' => 'DELETE'])

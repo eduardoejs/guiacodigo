@@ -71,6 +71,6 @@ return [
     'date' => 'Data',
     'match_list' => 'Partidas',
     'match' => 'Partida',
-    'result_description' => '([A] - Time A, [B] - Time B, [E] - Empate)',
+    'result_description' => 'Resultado(A - Time A, B - Time B, E - Empate)',
 
 ];
