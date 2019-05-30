@@ -14,4 +14,6 @@ interface BettingRepositoryInterface
     public function update(array $data, int $id):Bool;
     public function delete(int $id):Bool;
     public function find(int $id);
+    public function list():Collection;
 }
+

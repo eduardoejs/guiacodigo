@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Betting;
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Contracts\BettingRepositoryInterface;
 
 class BettingRepository extends AbstractRepository implements BettingRepositoryInterface
@@ -27,4 +28,9 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
           return false;
         }
     }
+
+    public function list():Collection
+    {
+      return Betting::all();
+    }    
 }
