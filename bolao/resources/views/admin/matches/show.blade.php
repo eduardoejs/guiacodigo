@@ -9,8 +9,9 @@
         @breadcrumb_component(['page' => $page, 'items' => $breadcrumb ?? []])
         @endbreadcrumb_component
 
+        <p>@lang('bolao.round'): {{ $register->round_title }}</p>        
         <p>@lang('bolao.title'): {{ $register->title }}</p>
-        <p>@lang('bolao.stadium'): {{ $register->stadium }}</p>
+        <p>@lang('bolao.stadium'): {{ $register->stadium }}</p>        
         <p>@lang('bolao.team_a'): {{ $register->team_a }}</p>
         <p>@lang('bolao.team_b'): {{ $register->team_b }}</p>
         <p>@lang('bolao.result'): {{ $register->result }}</p>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Betting;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -27,11 +28,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //Relacionamentos
     public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
 
+    public function bettings()
+    {
+        return $this->hasMany(Betting::class);
+    }
+
+    public function myBetting()
+    {
+        return $this->belongsToMany(Betting::class);
+    }
+
+    //metodos    
     public function hasRoles($roles)
     {
         $userRoles = $this->roles;
@@ -44,11 +57,6 @@ class User extends Authenticatable
             $role = Role::where('name', $role)->firstOrFail();
         }
         return (boolean) $this->roles()->find($role->id);
-    }
-
-    public function bettings()
-    {
-        return $this->hasMany(Betting::class);
     }
 
     public function isAdmin()
@@ -68,5 +76,4 @@ class User extends Authenticatable
 
         return array_collapse($rounds); //array_collapse -> Sintaxe Laravel versao 5.6, a partir da versao 5.7 foi alterado
     }
-
 }
