@@ -22,6 +22,13 @@ class Match extends Model
         return \date_format($date, 'd/m/Y H:i:s');
     }
 
+    public function getRoundTitleAttribute()
+    {
+        // pego o titulo da rodada por meio do relacionamento round() acima e concateno com o titulo do campeonato
+        //por meio do acessor betting_title que está no model Round
+        return $this->round->title .' - '. $this->round->betting_title; 
+    }
+
     //mutator
     public function setDateAttribute($value)
     {
