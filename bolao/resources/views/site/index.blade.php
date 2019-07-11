@@ -22,20 +22,22 @@
             </div>
             </div>
             <div class="row">
-
                 @foreach ($list as $value)
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                            <i class="fas fa-plus fa-3x"></i>
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{ $value->id }}">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fas fa-plus fa-3x"></i>
+                                </div>
                             </div>
-                        </div>
-                        <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+                            <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
                         </a>
                         <div class="portfolio-caption">
-                        <h4>{{ $value->title }}</h4>
-                        <p class="text-muted">{{ $value->user_name }}</p>
+                            <h4>{{ $value->title }}</h4>
+                            <p class="text-muted">{{ $value->user_name }}</p>
+                            <a href="#" class="btn btn-info">Ver Rodadas</a>
+                            <button class="btn btn-danger">Deixar Bolão</button>
+                            <button class="btn btn-success">Participar</button>
                         </div>
                     </div>
                 @endforeach                
@@ -43,210 +45,42 @@
         </div>
     </section>
 
-
     <!-- Portfolio Modals -->
-
-    <!-- Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
+    @foreach ($list as $key => $value)
+        <div class="portfolio-modal modal fade" id="portfolioModal{{ $value->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                    <div class="rl"></div>
+                    </div>
                 </div>
-            </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt="">
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>Date: January 2017</li>
-                                <li>Client: Threads</li>
-                                <li>Category: Illustration</li>
-                            </ul>
-                            <button class="btn btn-primary" data-dismiss="modal" type="button">
-                                <i class="fas fa-times"></i>
-                                Close Project</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2 class="text-uppercase">{{ $value->title }}</h2>
+                                <p class="item-intro text-muted">{{ $value->user_name }}</p>                                
+                                <p>Este bolão tem as seguintes regras:</p>
+                                <ul class="list-inline">
+                                    <li>Valor do Resultado: {{ $value->value_result }}</li>
+                                    <li>Valor Extra: {{ $value->extra_value }}</li>
+                                    <li>Taxa: {{ $value->value_free }}</li>
+                                </ul>
+                                <a href="#" class="btn btn-info">Ver Rodadas</a>
+                                <button class="btn btn-danger">Deixar Bolão</button>
+                                <button class="btn btn-success">Participar</button>
+                                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                    <i class="fas fa-times"></i>
+                                    Close Project</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 
-        <!-- Modal 2 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img class="img-fluid d-block mx-auto" src="img/portfolio/02-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                        <li>Date: January 2017</li>
-                        <li>Client: Explore</li>
-                        <li>Category: Graphic Design</li>
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Modal 3 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img class="img-fluid d-block mx-auto" src="img/portfolio/03-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                        <li>Date: January 2017</li>
-                        <li>Client: Finish</li>
-                        <li>Category: Identity</li>
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Modal 4 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img class="img-fluid d-block mx-auto" src="img/portfolio/04-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                        <li>Date: January 2017</li>
-                        <li>Client: Lines</li>
-                        <li>Category: Branding</li>
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Modal 5 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                        <li>Date: January 2017</li>
-                        <li>Client: Southwest</li>
-                        <li>Category: Website Design</li>
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Modal 6 -->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="modal-body">
-                    <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img class="img-fluid d-block mx-auto" src="img/portfolio/06-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                        <li>Date: January 2017</li>
-                        <li>Client: Window</li>
-                        <li>Category: Photography</li>
-                    </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                        <i class="fas fa-times"></i>
-                        Close Project</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
 @endsection
