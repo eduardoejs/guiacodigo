@@ -35,9 +35,11 @@
                         <div class="portfolio-caption">
                             <h4>{{ $value->title }}</h4>
                             <p class="text-muted">{{ $value->user_name }}</p>
-                            <a href="#" class="btn btn-info">Ver Rodadas</a>
-                            <button class="btn btn-danger">Deixar Bolão</button>
-                            <button class="btn btn-success">Participar</button>
+                            @form_component(['action' => route("sign", $value->id), 'method' => 'POST'])
+                                <a href="#" class="btn btn-info">Ver Rodadas</a>
+                                <button class="btn btn-danger">Deixar Bolão</button>
+                                <button class="btn btn-success">Participar</button>
+                            @endform_component                            
                         </div>
                     </div>
                 @endforeach                
@@ -68,6 +70,7 @@
                                     <li>Valor Extra: {{ $value->extra_value }}</li>
                                     <li>Taxa: {{ $value->value_free }}</li>
                                 </ul>
+                                
                                 <a href="#" class="btn btn-info">Ver Rodadas</a>
                                 <button class="btn btn-danger">Deixar Bolão</button>
                                 <button class="btn btn-success">Participar</button>

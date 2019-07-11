@@ -13,4 +13,14 @@ class PrincipalController extends Controller
         $list = $bettingRepository->list();
         return view('site.index', compact('list'));
     }
+
+    public function sign($id)
+    {
+        dd('OK'.$id);
+    }
+    
+    public function signNoLogin($id)
+    {        
+        return redirect()->route('principal');
+    }
 }
