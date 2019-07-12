@@ -14,9 +14,10 @@ class PrincipalController extends Controller
         return view('site.index', compact('list'));
     }
 
-    public function sign($id)
+    public function sign($id, BettingRepository $bettingRepository)
     {
-        dd('OK'.$id);
+        $bettingRepository->BettingUser($id);
+        return redirect(route('principal').'#portfolio'); //redireciona para a rota e posiciona o foco da tela no id da section desejada
     }
     
     public function signNoLogin($id)
