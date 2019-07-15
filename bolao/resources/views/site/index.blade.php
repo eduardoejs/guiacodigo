@@ -36,7 +36,7 @@
                             <h4>{{ $value->title }}</h4>
                             <p class="text-muted">{{ $value->user_name }}</p>
                             @form_component(['action' => route("sign", $value->id), 'method' => 'POST'])
-                                <a href="#" class="btn btn-info">@lang('bolao.view_rounds')</a>
+                                <a href="{{ route('rounds', $value->id) }}" class="btn btn-info">@lang('bolao.view_rounds')</a>
                                 @if ($value->subscriber ?? false)
                                     <button class="btn btn-danger">@lang('bolao.stop_participate')</button>    
                                     @else
@@ -74,7 +74,7 @@
                                     <li>@lang('bolao.value_free'): {{ $value->value_free }}</li>
                                 </ul>                                
                                 @form_component(['action' => route("sign", $value->id), 'method' => 'POST'])
-                                    <a href="#" class="btn btn-info">@lang('bolao.view_rounds')</a>
+                                    <a href="{{ route('rounds', $value->id) }}" class="btn btn-info">@lang('bolao.view_rounds')</a>
                                     @if ($value->subscriber ?? false)
                                         <button class="btn btn-danger">@lang('bolao.stop_participate')</button>    
                                         @else
