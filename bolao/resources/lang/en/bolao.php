@@ -72,5 +72,10 @@ return [
     'match_list' => 'Matches',
     'match' => 'Match',
     'result_description' => 'Result (A - Team A, B - Team B, E - Draw)',
+    'view_rounds' => 'View rounds',
+    'stop_participate' => 'Stop',
+    'to_participate' => 'Participate',
+    'close' => 'Close',
+    'check_rules' => 'Check the rules',
 
 ];

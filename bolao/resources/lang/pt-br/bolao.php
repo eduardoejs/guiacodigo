@@ -72,5 +72,9 @@ return [
     'match_list' => 'Partidas',
     'match' => 'Partida',
     'result_description' => 'Resultado(A - Time A, B - Time B, E - Empate)',
-
+    'view_rounds' => 'Ver rodadas',
+    'stop_participate' => 'Deixar bolão',
+    'to_participate' => 'Participar',
+    'close' => 'Fechar',
+    'check_rules' => 'Confira as regras',
 ];
