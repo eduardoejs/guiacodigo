@@ -27,8 +27,10 @@ class PrincipalController extends Controller
 
     public function rounds($betting_id, BettingRepository $bettingRepository)
     {
+        $betting = $bettingRepository->find($betting_id);
         $list = $bettingRepository->rounds($betting_id);        
-        $page = trans('bolao.round_list'); //Helper para Traduzir
+        $page = trans('bolao.round_list')." ($betting->title)"; //Helper para Traduzir        
+        $routeName = 'rounds.matches';
         $columnList = ['id' => '#',
                        'title' => trans('bolao.title'),
                        'betting_title' => trans('bolao.betting_title'),
@@ -45,6 +47,13 @@ class PrincipalController extends Controller
             (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
         ];
 
-        return view('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb'));            
+        return view('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb', 'routeName'));            
+    }
+
+    public function matches($round_id, BettingRepository $bettingRepository)
+    {
+        $list = $bettingRepository->matches($round_id);
+        dd($list);
+        return 'ok';
     }
 }
